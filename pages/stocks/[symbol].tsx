@@ -1,5 +1,6 @@
-import { Container, Table, Title } from "@mantine/core";
+import { Button, Container, Group, Table, Title } from "@mantine/core";
 import { NextPage } from "next";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import { History } from "../../types";
@@ -14,7 +15,14 @@ const Stock: NextPage = () => {
 
   return (
     <Container>
-      <Title>{symbol}</Title>
+      <Group>
+        <Link href="/home" passHref>
+          <Button component="a" variant="default">
+            Back
+          </Button>
+        </Link>
+        <Title>{symbol}</Title>
+      </Group>
       <Table>
         <thead>
           <tr>

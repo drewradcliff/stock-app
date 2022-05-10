@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Title, Container, TextInput, Button } from "@mantine/core";
+import { Title, Container, TextInput, Button, Stack } from "@mantine/core";
 import type { NextPage } from "next";
 
 const Login: NextPage = () => {
@@ -12,11 +12,15 @@ const Login: NextPage = () => {
 
   return (
     <Container size="xs">
-      <Title order={1}>Login</Title>
       <form onSubmit={handleSubmit}>
-        <TextInput type="email" placeholder="Enter email" />
-        <TextInput type="password" placeholder="Enter password" />
-        <Button type="submit">Login</Button>
+        <Stack>
+          <Title order={1}>Login</Title>
+          <TextInput type="email" placeholder="Enter email" />
+          <TextInput type="password" placeholder="Enter password" />
+          <Button type="submit" variant="default">
+            Login
+          </Button>
+        </Stack>
       </form>
     </Container>
   );
