@@ -1,5 +1,6 @@
 import { Button, Group, Modal, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { showNotification } from "@mantine/notifications";
 import { mutate } from "swr";
 import { Stock } from "../types";
 
@@ -36,6 +37,11 @@ export default function AddSymbolModal({ modal, setModal, data }: Props) {
           // This will not update the UI because we are using static data from our API
           mutate("/api/stocks");
           setModal(false);
+          showNotification({
+            title: "Success",
+            message: "Successfully added stock",
+            color: "green",
+          });
         })}
       >
         <TextInput
