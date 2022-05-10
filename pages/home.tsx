@@ -1,13 +1,16 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { Container, Title, Table } from "@mantine/core";
+import { Container, Title, Table, Modal, Button, Group } from "@mantine/core";
 import useSWR from "swr";
 import { Stock } from "../types";
 import { fetcher } from "../util";
+import { useState } from "react";
+import AddSymbolModal from "../components/AddSymbolModal";
 
 const Home: NextPage = () => {
   const { data } = useSWR<Stock[]>("/api/stocks", fetcher);
   const router = useRouter();
+  const [modal, setModal] = useState(false);
 
   const handleClick = (symbol: string) => {
     router.push("/stocks/" + symbol);
@@ -15,7 +18,12 @@ const Home: NextPage = () => {
 
   return (
     <Container>
-      <Title>Stock App</Title>
+      <Group position="apart">
+        <Title>Stock App</Title>
+        <Button onClick={() => setModal(true)} variant="default">
+          Add new symbol
+        </Button>
+      </Group>
       <Table highlightOnHover>
         <thead>
           <tr>
@@ -38,6 +46,7 @@ const Home: NextPage = () => {
           ))}
         </tbody>
       </Table>
+      <AddSymbolModal modal={modal} setModal={setModal} data={data} />
     </Container>
   );
 };
