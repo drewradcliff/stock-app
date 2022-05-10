@@ -1,19 +1,22 @@
 import { NextPage } from "next";
+import { useRouter } from "next/router";
 import { Container, Title, Table } from "@mantine/core";
 import useSWR from "swr";
 import { Stock } from "../types";
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { fetcher } from "../util";
 
 const Home: NextPage = () => {
   const { data } = useSWR<Stock[]>("/api/stocks", fetcher);
+  const router = useRouter();
 
-  console.log(data);
+  const handleClick = (symbol: string) => {
+    router.push("/stocks/" + symbol);
+  };
 
   return (
     <Container>
       <Title>Stock App</Title>
-      <Table>
+      <Table highlightOnHover>
         <thead>
           <tr>
             <th>Symbol</th>
@@ -23,7 +26,11 @@ const Home: NextPage = () => {
         </thead>
         <tbody>
           {data?.map((stock) => (
-            <tr key={stock.id}>
+            <tr
+              key={stock.id}
+              onClick={() => handleClick(stock.symbol)}
+              style={{ cursor: "pointer" }}
+            >
               <td>{stock.symbol}</td>
               <td>{stock.name}</td>
               <td>{stock.marketCap}</td>
