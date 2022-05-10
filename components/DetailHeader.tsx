@@ -7,7 +7,7 @@ type Props = {
 
 export default function DetailHeader({ symbol }: Props) {
   return (
-    <Group>
+    <Group my="xl">
       <Link href="/home" passHref>
         <Button component="a" variant="default">
           Back

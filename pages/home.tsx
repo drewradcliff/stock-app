@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
   return (
     <Container>
-      <Group position="apart">
+      <Group position="apart" my="xl">
         <Title>Stock App</Title>
         <Button onClick={() => setAddSymbolModal(true)} variant="default">
           Add new symbol

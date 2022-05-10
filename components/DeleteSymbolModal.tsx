@@ -1,4 +1,5 @@
 import { Button, Group, Modal } from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
 import { mutate } from "swr";
 
 type Props = {
@@ -23,6 +24,11 @@ export default function DeleteSymbolModal({ modal, setModal }: Props) {
             // This will not update the UI because we are using static data from our API
             mutate("/api/stocks");
             setModal(false);
+            showNotification({
+              title: "Success",
+              message: "Successfully deleted stock",
+              color: "green",
+            });
           }}
         >
           Delete
