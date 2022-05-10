@@ -15,8 +15,8 @@ const Login: NextPage = () => {
       <form onSubmit={handleSubmit}>
         <Stack>
           <Title order={1}>Login</Title>
-          <TextInput type="email" placeholder="Enter email" />
-          <TextInput type="password" placeholder="Enter password" />
+          <TextInput required type="email" placeholder="Enter email" />
+          <TextInput required type="password" placeholder="Enter password" />
           <Button type="submit" variant="default">
             Login
           </Button>
