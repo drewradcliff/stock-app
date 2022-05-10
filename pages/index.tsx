@@ -11,7 +11,7 @@ const Login: NextPage = () => {
   };
 
   return (
-    <Container size="xs">
+    <Container size="xs" mt="xl">
       <form onSubmit={handleSubmit}>
         <Stack>
           <Title order={1}>Login</Title>
